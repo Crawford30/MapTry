@@ -27,8 +27,8 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-       // locationManager.requestLocation() for ios 9 and latest
-         locationManager.startUpdatingLocation() // for ios 8 and below
+       locationManager.requestLocation()  //for ios 9 and latest
+        // locationManager.startUpdatingLocation() // for ios 8 and below
         // Do any additional setup after loading the view.
         //serach result table
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
@@ -65,21 +65,23 @@ class ViewController: UIViewController {
 
 
 extension ViewController : CLLocationManagerDelegate {
-     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
     }
     
-     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             let span = MKCoordinateSpan(latitudeDelta: 0.05,longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
         }
+        
+        
     }
     
-     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error:: \(error)")
     }
 }
@@ -122,7 +124,7 @@ extension ViewController : MKMapViewDelegate {
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), for: .normal)
-        button.addTarget(self, action: Selector("getDirections"), for: .touchUpInside)
+        button.addTarget(self, action: Selector(("getDirections")), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }

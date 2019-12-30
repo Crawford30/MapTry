@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EEAA27D923B9D5B300A18FD1 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA27D823B9D5B300A18FD1 /* LocationSearchTable.swift */; };
+		EEAA27DD23BA034500A18FD1 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA27DC23BA034500A18FD1 /* LocationSearchTable.swift */; };
 		EEACD57823B7301D00870A53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEACD57723B7301D00870A53 /* AppDelegate.swift */; };
 		EEACD57A23B7301D00870A53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEACD57923B7301D00870A53 /* SceneDelegate.swift */; };
 		EEACD57C23B7301D00870A53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEACD57B23B7301D00870A53 /* ViewController.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EEAA27D823B9D5B300A18FD1 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		EEAA27DC23BA034500A18FD1 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		EEACD57423B7301D00870A53 /* MapTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEACD57723B7301D00870A53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEACD57923B7301D00870A53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,9 +60,9 @@
 			children = (
 				EEACD57723B7301D00870A53 /* AppDelegate.swift */,
 				EEACD57923B7301D00870A53 /* SceneDelegate.swift */,
+				EEAA27DC23BA034500A18FD1 /* LocationSearchTable.swift */,
 				EEACD57B23B7301D00870A53 /* ViewController.swift */,
 				EEACD57D23B7301D00870A53 /* Main.storyboard */,
-				EEAA27D823B9D5B300A18FD1 /* LocationSearchTable.swift */,
 				EEACD58023B7303500870A53 /* Assets.xcassets */,
 				EEACD58223B7303500870A53 /* LaunchScreen.storyboard */,
 				EEACD58523B7303500870A53 /* Info.plist */,
@@ -144,7 +144,7 @@
 				EEACD57C23B7301D00870A53 /* ViewController.swift in Sources */,
 				EEACD57823B7301D00870A53 /* AppDelegate.swift in Sources */,
 				EEACD57A23B7301D00870A53 /* SceneDelegate.swift in Sources */,
-				EEAA27D923B9D5B300A18FD1 /* LocationSearchTable.swift in Sources */,
+				EEAA27DD23BA034500A18FD1 /* LocationSearchTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +296,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MapTry.MapTry;
+				PRODUCT_BUNDLE_IDENTIFIER = MapTry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -315,7 +315,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MapTry.MapTry;
+				PRODUCT_BUNDLE_IDENTIFIER = MapTry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
