@@ -8,8 +8,8 @@
 
 import UIKit
 import MapKit
-//protocol
 
+//protocol
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
@@ -23,31 +23,35 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // locationSearchTable.handleMapSearchDelegate = self
-        locationManager.delegate = self
+        
+       
+        // Do any additional setup after loading the view.
+        
+        //====search results===
+        locationManager.delegate = (self as CLLocationManagerDelegate)
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-       locationManager.requestLocation()  //for ios 9 and latest
-        // locationManager.startUpdatingLocation() // for ios 8 and below
-        // Do any additional setup after loading the view.
-        //serach result table
+        locationManager.requestLocation()  //for ios 9 and latest
+
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         
         
-        //setting up the search bar
+        //=====setting up the search bar======
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
         navigationItem.titleView = resultSearchController?.searchBar
-        
-        //UIserach scene controller appear
+    
+    
+    //===UIsearch scene controller appear=====
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        locationSearchTable.handleMapSearchDelegate = self
         
-        //This passes along a handle of the mapView from the main View Controller onto the locationSearchTable.
+        //===This passes along a handle of the mapView from the main View Controller onto the locationSearchTable.===
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
     }
@@ -65,29 +69,32 @@ class ViewController: UIViewController {
 
 
 extension ViewController : CLLocationManagerDelegate {
-    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
+        
     }
     
-    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let span = MKCoordinateSpan(latitudeDelta: 0.05,longitudeDelta: 0.05)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
         }
         
-        
     }
     
-    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error)")
+        
     }
+
 }
 
 
-
+//========for handling search on a map=====
 extension ViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
@@ -103,8 +110,6 @@ extension ViewController: HandleMapSearch {
         }
         mapView.addAnnotation(annotation)
          let span = MKCoordinateSpan(latitudeDelta: 0.05,longitudeDelta: 0.05)
-        //let span = MKCoordinateSpanMake(0.05, 0.05)
-        //let region = MKCoordinateRegionMake(placemark.coordinate, span)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }
@@ -113,7 +118,7 @@ extension ViewController: HandleMapSearch {
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
+            //===return nil so map view draws "blue dot" for standard user location=====
             return nil
         }
         let reuseId = "pin"
